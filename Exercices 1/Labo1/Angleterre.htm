@@ -15,19 +15,20 @@
         
     /*FOND BLEU*/
         objC2D.beginPath();
+       
         objC2D.moveTo(0,0);
         objC2D.lineTo(640,0)
         objC2D.lineTo(640,320)
         objC2D.lineTo(0,320)
-        objC2D.strokeStyle = '#ff0000';
-        objC2D.stroke();
-        objC2D.closePath();
-
+        
         objC2D.fillStyle = 'blue'; 
         objC2D.fill();
+     //   objC2D.strokeStyle = 'black';
+     //   objC2D.stroke();
+        objC2D.closePath();
         /*X BLANC*/
         objC2D.beginPath();
-        objC2D.moveTo(0,0);    
+        objC2D.moveTo(3,3);    
         objC2D.lineTo(640,320);
         objC2D.strokeStyle = 'white';
         objC2D.lineWidth = 60;
@@ -42,8 +43,8 @@
         objC2D.closePath();
         /*X ROUGE*/
         objC2D.beginPath();
-        objC2D.moveTo(0,0);  
-       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2);
+        objC2D.moveTo(-5,9);  
+        objC2D.lineTo(objCanvas.width/2-20,objCanvas.height/2);
      //    objC2D.lineTo(320,160);
         objC2D.strokeStyle = 'red';
         objC2D.lineWidth = 20;
@@ -52,8 +53,8 @@
 
 
         objC2D.beginPath();
-        objC2D.moveTo(0,320);  
-       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2);
+        objC2D.moveTo(0,331);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2+10);
   
         objC2D.strokeStyle = 'red';
         objC2D.lineWidth = 20;
@@ -62,8 +63,8 @@
 
 
         objC2D.beginPath();
-        objC2D.moveTo(640,320);  
-       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2);
+        objC2D.moveTo(644,311);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2-10);
     
         objC2D.strokeStyle = 'red';
         objC2D.lineWidth = 20;
@@ -71,8 +72,8 @@
         objC2D.closePath();
 
         objC2D.beginPath();
-        objC2D.moveTo(640,0);  
-       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2);
+        objC2D.moveTo(640,-12);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2-10);
  
         objC2D.strokeStyle = 'red';
         objC2D.lineWidth = 20;
@@ -116,7 +117,38 @@
         objC2D.lineWidth = 60;
         objC2D.stroke();
         objC2D.closePath();
-       
+  //Bordure
+  objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(640,1);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(0,320);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,320);    
+        objC2D.lineTo(640,320);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(640,320);    
+        objC2D.lineTo(640,0);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
 	}
    </script>
 </head>
