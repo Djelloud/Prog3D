@@ -1,0 +1,195 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Drapeau de l'Angleterre par Mohamed-Amine Djelloud</title>
+  <link rel="stylesheet" type="text/css" href="StyleLabo1.css" />   
+ 
+ 
+  <!-- Code JavaScript local -->
+  <script type="text/javascript">
+      const dessiner = ()=> {
+        const objCanvas = document.getElementById('monCanvas');
+        const objC2D = objCanvas.getContext('2d');  
+        
+        objC2D.beginPath();
+        objC2D.ellipse(objCanvas.width/2,objCanvas.height/2,objCanvas.width/2,objCanvas.height/2,0,0,2*Math.PI,true);
+        objC2D.clip(); 
+     
+    /*FOND BLEU*/
+        objC2D.beginPath();
+       
+        objC2D.moveTo(0,0);
+        objC2D.lineTo(640,0)
+        objC2D.lineTo(640,320)
+        objC2D.lineTo(0,320)
+       
+        objC2D.fillStyle = 'blue'; 
+        objC2D.fill();
+     //   objC2D.strokeStyle = 'black';
+     //   objC2D.stroke();
+        objC2D.closePath();
+        /*X BLANC*/
+        objC2D.beginPath();
+        objC2D.moveTo(3,3);    
+        objC2D.lineTo(640,320);
+        objC2D.strokeStyle = 'white';
+        objC2D.lineWidth = 60;
+        objC2D.stroke();
+        objC2D.closePath();
+        objC2D.beginPath();
+        objC2D.moveTo(0,320);    
+        objC2D.lineTo(640,0);
+        objC2D.strokeStyle = 'white';
+        objC2D.lineWidth = 60;
+        objC2D.stroke();
+        objC2D.closePath();
+        /*X ROUGE*/
+        objC2D.beginPath();
+        objC2D.moveTo(-5,9);  
+        objC2D.lineTo(objCanvas.width/2-20,objCanvas.height/2);
+     //    objC2D.lineTo(320,160);
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 20;
+        objC2D.stroke();
+        objC2D.closePath();
+
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,331);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2+10);
+  
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 20;
+        objC2D.stroke();
+        objC2D.closePath();
+
+
+        objC2D.beginPath();
+        objC2D.moveTo(644,311);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2-10);
+    
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 20;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(640,-12);  
+       objC2D.lineTo(objCanvas.width/2,objCanvas.height/2-10);
+ 
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 20;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        // + BLANC
+        objC2D.beginPath();
+        objC2D.moveTo(objCanvas.width/2,0);  
+        objC2D.lineTo(objCanvas.width/2,objCanvas.height);
+   
+        objC2D.strokeStyle = 'white';
+        objC2D.lineWidth = 100;
+        objC2D.stroke();
+        objC2D.closePath();
+//
+        objC2D.beginPath();
+        objC2D.moveTo(0,objCanvas.height/2);  
+        objC2D.lineTo(objCanvas.width,objCanvas.height/2);
+   
+        objC2D.strokeStyle = 'white';
+        objC2D.lineWidth = 100;
+        objC2D.stroke();
+        objC2D.closePath();
+
+    /*+ ROUGE*/
+    objC2D.beginPath();
+        objC2D.moveTo(objCanvas.width/2,0);  
+        objC2D.lineTo(objCanvas.width/2,objCanvas.height);
+   
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 60;
+        objC2D.stroke();
+        objC2D.closePath();
+//
+        objC2D.beginPath();
+        objC2D.moveTo(0,objCanvas.height/2);  
+        objC2D.lineTo(objCanvas.width,objCanvas.height/2);
+   
+        objC2D.strokeStyle = 'red';
+        objC2D.lineWidth = 60;
+        objC2D.stroke();
+        objC2D.closePath();
+ 
+  //Bordure
+  objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(640,1);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(0,320);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,320);    
+        objC2D.lineTo(640,320);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(640,320);    
+        objC2D.lineTo(640,0);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+
+        
+	}
+   </script>
+</head>
+
+<body onload="dessiner()">
+    <header class="sTexteCentre sLargeurDiv sEntete">
+        <p> 
+            <span class="sTitreApp">
+                Drapeau de l'Angleterre<br />
+            </span> par 
+            <span class="sAuteurApp">
+                Mohamed-Amine Djelloud
+            </span> 
+       </p>
+    </header>
+
+    <main class="sLargeurDiv sCorps">	
+	   <canvas id="monCanvas" width="640" height="320">
+		    Votre navigateur ne supporte pas la balise canvas
+	    </canvas>
+    </main>
+
+    <footer class="sLargeurDiv sPiedDePage">
+        <p>
+            <a href="http://www.cgodin.qc.ca">
+                <img src="logoCGG.jpg" alt="logoCGG" />
+            </a> 
+			<a href="http://www.cgodin.qc.ca/programme/techniques-informatique/">
+	           Département d'informatique du Cégep Gérald-Godin
+	        </a> 
+            <br />
+            &copy; 2020
+        </p>
+    </footer>
+</body>
+</html>
