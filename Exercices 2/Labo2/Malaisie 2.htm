@@ -3,7 +3,7 @@
 <html lang="fr" >
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Drapeau de la Malaisie par Mohamed-Amine Djelloud</title>
+  <title>Drapeau de la Malaisie par VotreNom</title>
    <link rel="stylesheet" type="text/css" href="StyleLabo5.css" />   
  
  
@@ -13,6 +13,9 @@
           const objCanvas = document.getElementById('monCanvas');
           const objC2D = objCanvas.getContext('2d');
           
+          objC2D.save();
+       //   objC2D.rotate(Math.PI/7);
+      
          // Dessiner le drapeau de la Malaisie 
          for(var i = 1;i< 15;i++){
             objC2D.beginPath();
@@ -112,6 +115,15 @@
        //  objC2D.stroke();
          objC2D.fill();
          }
+         objC2D.restore();
+        // 
+         objC2D.translate(objCanvas.width/2 -100, objCanvas.height/2)
+         objC2D.globalCompositeOperation = 'destination-in';
+          var strTexte = 'MALAISIE'; 
+          objC2D.font = '80px Arial';   
+        objC2D.textAlign = "left"; 
+        objC2D.rotate(Math.PI/7);
+        objC2D.fillText(strTexte,0,0);
       }
    </script>
 </head>

@@ -13,7 +13,11 @@
         const objCanvas = document.getElementById('monCanvas');
         const objC2D = objCanvas.getContext('2d');  
         
+        
+
+      
     /*FOND BLEU*/
+    
         objC2D.beginPath();
        
         objC2D.moveTo(0,0);
@@ -23,6 +27,10 @@
         
         objC2D.fillStyle = 'blue'; 
         objC2D.fill();
+        
+        
+      //  objC2D.globalCompositeOperation = 'destination-over';
+      
      //   objC2D.strokeStyle = 'black';
      //   objC2D.stroke();
         objC2D.closePath();
@@ -149,6 +157,15 @@
         objC2D.lineWidth = 1;
         objC2D.stroke();
         objC2D.closePath();
+
+        
+       
+      /*  objC2D.beginPath();
+        objC2D.ellipse(objCanvas.width/2,objCanvas.height/2,objCanvas.width/2,objCanvas.height/2,0,0,2*Math.PI,true);
+       objC2D.stroke();
+        objC2D.closePath();*/
+       
+      //  objC2D.globalCompositeOperation = 'destination-over';
 	}
    </script>
 </head>
