@@ -14,16 +14,18 @@
       const dessiner = ()=> {
         const objCanvas = document.getElementById('monCanvas');
         const objC2D = objCanvas.getContext('2d');
-
+      //  
         var objImageBG = new Image();
         objImageBG.src = 'plage.png';
         
 		var objImage = new Image();
         objImage.src = 'motif.png';
+        objCanvas.globalAlpha = 0.5;
         objImage.onload = function() {
-        
+            
         objMotif= objC2D.createPattern(objImage,'repeat');
         objC2D.fillStyle = objMotif; // Appliquer le motif au remplissage
+       // objImage.globalAlpha = 1;
         var strTexte = 'Mohamed';    
         objC2D.shadowColor = 'black';
         objC2D.shadowBlur = 10;

@@ -159,13 +159,12 @@
         objC2D.closePath();
 
         
-       
-      /*  objC2D.beginPath();
+        objC2D.globalCompositeOperation = 'destination-atop';
+        objC2D.beginPath();
         objC2D.ellipse(objCanvas.width/2,objCanvas.height/2,objCanvas.width/2,objCanvas.height/2,0,0,2*Math.PI,true);
-       objC2D.stroke();
-        objC2D.closePath();*/
+        objC2D.fill();
        
-      //  objC2D.globalCompositeOperation = 'destination-over';
+      //  
 	}
    </script>
 </head>

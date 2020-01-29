@@ -27,15 +27,7 @@
                 objPixels.data[i + 2] = 255 - objPixels.data[i + 2]; // bleu
             
               }
-            //  objC2D.putImageData(objPixels, 10, 20 + objImage.height);
-              
-              // Parcourir le tableau d’octets
-              for (let i = 0; i < objPixels.data.length; i += 4) {
-                  const enGris = Math.floor(((objPixels.data[i]) +
-					  (objPixels.data[i + 1]) + (objPixels.data[i + 2])) / 3);
-                  // Changer la couleur des pixels
-                  for (let j = 0; j < 3; j++) objPixels.data[i + j] = enGris;
-              }
+          
 
               // Redessiner l'image transformée
               objC2D.putImageData(objPixels, 10, 20 + objImage.height);

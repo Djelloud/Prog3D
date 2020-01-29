@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="description" content="Horloge 2020">
+  
+  <title>Horloge analogique par VotreNom</title>
+  <link rel="stylesheet" type="text/css" href="StyleLabo3.css" />   
+ 
+  <!-- Code JavaScript local -->
+  <script type="text/javascript">
+      const dessinerHorloge = ()=> {
+        const objCanvas = document.getElementById('monCanvas');
+        const objC2D = objCanvas.getContext('2d');
+        
+        var objImage = new Image();
+        objImage.src = 'motif.png';
+        objImage.onload = function() {
+
+        objMotif= objC2D.createPattern(objImage,'repeat');
+        objC2D.fillStyle = objMotif;
+
+        }
+
+		// Dessiner votre horloge analogique ici
+        objC2D.translate(objCanvas.width/2, objCanvas.height/2);
+
+
+        objC2D.beginPath();
+        objC2D.arc(0,0, 300, 0, 2 * Math.PI);
+        objC2D.fill();
+        objC2D.stroke();
+      }
+   </script>
+</head>
+
+<body onload="dessinerHorloge()">
+    <header class="sTexteCentre sLargeurDiv sEntete">
+        <p> 
+            <span class="sTitreApp">
+                Horloge analogique<br />
+            </span> par 
+            <span class="sAuteurApp">
+                Mohamed-Amine Djelloud
+            </span> 
+       </p>
+    </header>
+
+    <main class="sLargeurDiv sCorps">	
+	   <canvas id="monCanvas" width="640" height="640">
+		    Votre navigateur ne supporte pas la balise canvas
+	    </canvas>
+    </main>
+
+    <footer class="sLargeurDiv sPiedDePage">
+        <p>
+            <a href="http://www.cgodin.qc.ca">
+                <img src="logoCGG.jpg" alt="logoCGG" />
+            </a> 
+ 			<a href="http://www.cgodin.qc.ca/programme/techniques-informatique/">
+	           Département d'informatique du Cégep Gérald-Godin
+	        </a> 
+            <br />
+            &copy; 2020
+        </p>
+    </footer>
+</body>
+</html>
