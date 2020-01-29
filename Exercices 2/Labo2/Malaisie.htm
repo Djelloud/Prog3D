@@ -14,6 +14,100 @@
           const objC2D = objCanvas.getContext('2d');
           
          // Dessiner le drapeau de la Malaisie 
+         for(var i = 1;i< 15;i++){
+            objC2D.beginPath();
+            if(i % 2 ==0){
+            //   alert(i);
+                objC2D.fillStyle = "#FFFFFF";
+            }else{
+                objC2D.fillStyle = "#FF0000";
+            }
+           if(i == 1){
+               //alert(i);
+            objC2D.fillRect(0,0,640,30);
+           }else{
+            objC2D.fillRect(0,30 * (i-1),640,30);
+           }
+            
+            
+            objC2D.closePath();
+           
+  
+
+         }
+
+         //RECTANGLE BLEU
+         objC2D.beginPath();
+         objC2D.fillStyle = "#0000B2";
+         objC2D.fillRect(0,0,objCanvas.width/2,240);
+         objC2D.closePath();
+        //cercle jaune
+        objC2D.beginPath();
+        objC2D.arc(objCanvas.width/4, 120, objCanvas.height/6,0, 2 * Math.PI);
+        objC2D.fillStyle = "yellow";
+        objC2D.strokeStyle = "yellow";
+        objC2D.fill();
+        objC2D.stroke();
+         //cercle bleu
+         objC2D.beginPath();
+        objC2D.arc(objCanvas.width/2-145, 120, objCanvas.height/7,0, 2 * Math.PI);
+        objC2D.fillStyle = "#0000B2";
+        objC2D.strokeStyle = "#0000B2";
+        objC2D.fill();
+        objC2D.stroke();
+  //Bordure
+  objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(640,1);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(0,420);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(0,420);    
+        objC2D.lineTo(640,420);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+
+        objC2D.beginPath();
+        objC2D.moveTo(640,420);    
+        objC2D.lineTo(640,0);
+        objC2D.strokeStyle = 'black';
+        objC2D.lineWidth = 1;
+        objC2D.stroke();
+        objC2D.closePath();
+         //TRIANGLE
+         
+         objC2D.translate(objCanvas.width/2 -80, 120)
+         for(var i = 0; i < 14; i++){
+            objC2D.rotate(Math.PI/7);
+       
+         
+
+        objC2D.beginPath();
+       
+      
+        objC2D.moveTo(0,0);    
+        objC2D.lineTo(12,6);
+        objC2D.lineTo(30,-45);
+      //  objC2D.lineTo(40,-40);
+      //  objC2D.strokeStyle = 'yellow';
+        objC2D.fillStyle = 'yellow';
+        objC2D.closePath();
+       //  objC2D.stroke();
+         objC2D.fill();
+         }
       }
    </script>
 </head>
@@ -26,7 +120,7 @@
                 Drapeau de la Malaisie<br />
             </span> par 
             <span class="sAuteurApp">
-                VotreNom
+                Mohamed-Amine Djelloud
             </span> 
        </p>
     </header>
