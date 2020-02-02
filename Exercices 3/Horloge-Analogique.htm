@@ -14,23 +14,165 @@
         const objCanvas = document.getElementById('monCanvas');
         const objC2D = objCanvas.getContext('2d');
         
+    
         var objImage = new Image();
-        objImage.src = 'motif.png';
-        objImage.onload = function() {
-
-        objMotif= objC2D.createPattern(objImage,'repeat');
-        objC2D.fillStyle = objMotif;
-
-        }
-
+        objImage.src = 'space.jpg';
+          
 		// Dessiner votre horloge analogique ici
-        objC2D.translate(objCanvas.width/2, objCanvas.height/2);
 
 
-        objC2D.beginPath();
-        objC2D.arc(0,0, 300, 0, 2 * Math.PI);
-        objC2D.fill();
-        objC2D.stroke();
+        objImage.onload = function() {
+            
+            objC2D.translate(objCanvas.width/2, objCanvas.height/2);
+            objC2D.beginPath();
+             objC2D.arc(0,0, 250, 0, 2 * Math.PI);
+             objC2D.clip();
+             objC2D.stroke();         
+             objC2D.drawImage(objImage, -300, -300,objCanvas.width,objCanvas.height);
+             objC2D.closePath();
+         var strTexte = '';
+         objC2D.font = '20px Arial';   
+        objC2D.textAlign = "center"; 
+        objC2D.fillStyle = "white";
+        objC2D.save();
+
+
+            for(var i = 1 ; i < 13;i++){
+                
+                switch(i){
+                    case 1 : 
+                    strTexte = "XII";
+                    break;
+                    case 2 : 
+                    strTexte = "I";
+                    break;
+                    case 3 : 
+                    strTexte = "II";
+                    break;
+                    case 4 : 
+                    strTexte = "III";
+                    break;
+                    case 5 : 
+                    strTexte = "IV";
+                    break;
+                    case 6 : 
+                    strTexte = "V";
+                    break;
+                    case 7 : 
+                    strTexte = "VI";
+                    break;
+                    case 8 : 
+                    strTexte = "VII";
+                    break;
+                    case 9 : 
+                    strTexte = "VIII";
+                    break;
+                    case 10 : 
+                    strTexte = "IX";
+                    break;
+                    case 11 : 
+                    strTexte = "X";
+                    break;
+                    case 12 : 
+                    strTexte = "XI";
+                    break;
+                }
+
+            objC2D.fillText(strTexte, 0 ,-220);
+            objC2D.rotate(Math.PI/6);
+            
+            }
+
+            
+         /*   objC2D.beginPath();
+        objC2D.rect(0, 0, 10, 150);
+        objC2D.stroke();*/
+          //  objC2D.restore();
+          
+          for(var i = 1 ; i <= 60;i++){
+            objC2D.beginPath();
+            objC2D.moveTo(0,-215);
+            objC2D.lineTo(0,-200);
+            objC2D.strokeStyle = "black";
+            objC2D.lineWidth = 2;
+            objC2D.stroke();
+           objC2D.closePath();
+           objC2D.rotate(Math.PI/30);
+          }
+           
+          objC2D.restore();
+          for(var i = 1 ; i < 13;i++){ 
+            objC2D.beginPath();
+            objC2D.moveTo(0,-215);
+            objC2D.lineTo(0,-200);
+            objC2D.strokeStyle = "purple";
+            objC2D.lineWidth = 5;
+            objC2D.stroke();
+           objC2D.closePath();
+           objC2D.rotate(Math.PI/6);
+          }
+     
+          objC2D.restore();
+          objC2D.save();
+        // aiguille seconde
+            objC2D.beginPath();
+            objC2D.moveTo(-5,10);
+            objC2D.lineTo(5,10);
+            objC2D.lineTo(0,-180);
+            objC2D.fillStyle = "purple";
+            objC2D.lineWidth = 1;
+            objC2D.stroke();
+            objC2D.fill();
+           objC2D.closePath();
+         //  objC2D.restore();
+            // aiguille heure
+            objC2D.rotate((Math.PI/180)*300);
+            objC2D.beginPath();
+            objC2D.moveTo(-5,10);
+            objC2D.lineTo(5,10);
+            objC2D.lineTo(0,-100);
+            objC2D.fillStyle = "pink";
+            objC2D.lineWidth = 1;
+            objC2D.stroke();
+            objC2D.fill();
+           objC2D.closePath();
+        // aiguille minute
+            objC2D.restore();
+            objC2D.save();
+            objC2D.rotate((Math.PI/180)*60);
+            objC2D.beginPath();
+            objC2D.moveTo(-5,10);
+            objC2D.lineTo(5,10);
+            objC2D.lineTo(0,-200);
+            objC2D.fillStyle = "red";
+            objC2D.lineWidth = 1;
+            objC2D.stroke();
+            objC2D.fill();
+            objC2D.closePath();
+
+            //mini cercle
+            objC2D.beginPath();
+             objC2D.arc(0,0, 15, 0, 2 * Math.PI);
+             objC2D.fillStyle = "black";
+             objC2D.fill();
+             objC2D.closePath();
+             
+             //Rectangle
+             objC2D.restore();
+          var date = "02/02/2020";
+             
+
+             objC2D.fillText(date, 0 ,60);
+         //   objC2D.measureText(date).width;
+
+            objC2D.beginPath();
+             objC2D.rect(0, 60,  objC2D.measureText(date).width,  objC2D.measureText(date).width);
+             objC2D.lineWidth = 1;
+             objC2D.stroke();
+        }
+       
+           
+
       }
    </script>
 </head>
