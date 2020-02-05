@@ -28,7 +28,9 @@
 			function mettreAJourAnimation() {
 				// A programmer
 				fltAngleRotation += Math.PI / 180;
-				scale -= 0.1;
+				
+				scale += varScale;
+				
 			//	alert(scale);
 			}
 
@@ -47,11 +49,11 @@
 
 				// Déplacer le contexte au centre du canevas
 				objC2D.translate(fltMilieu, fltMilieu);
-				
-				if(scale < 0.001){
-					alert('a');	
-			//		objC2D.restore();
-				//	objC2D.save();
+			//	objC2D.save();
+				if(scale < -0.9 && varScale == -0.05){
+				//	scale = 1;
+					varScale = 0.05;
+					alert(scale);
 				}
 				objC2D.scale(scale,1);	
 				objC2D.rotate(fltAngleRotation);
@@ -99,6 +101,7 @@
 			const objC2D = objCanvas.getContext('2d')
 			let objCycleAnimation = null;
 			let fltAngleRotation = 0;
+			let varScale = -0.05;
 			var scale = 1;
 			dessiner(); // Dessiner une première fois		
 			animer();  // Démarrer l'animation
