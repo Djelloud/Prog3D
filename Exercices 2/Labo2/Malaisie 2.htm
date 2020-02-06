@@ -21,7 +21,7 @@
             objC2D.beginPath();
             if(i % 2 ==0){
             //   alert(i);
-                objC2D.fillStyle = "black";
+                objC2D.fillStyle = "#FFFFFF";
             }else{
                 objC2D.fillStyle = "#FF0000";
             }
@@ -120,10 +120,10 @@
          objC2D.translate(objCanvas.width/2 -100, objCanvas.height/2)
          objC2D.globalCompositeOperation = 'destination-in';
           var strTexte = 'MALAISIE'; 
-          objC2D.font = '120px verdana bold';   
+          objC2D.font = '100px verdana';   
             objC2D.textAlign = "center"; 
             objC2D.rotate(Math.PI/6);
-            objC2D.fillText(strTexte,100,-20);
+            objC2D.fillText(strTexte,-25,-25);
       }
    </script>
 </head>

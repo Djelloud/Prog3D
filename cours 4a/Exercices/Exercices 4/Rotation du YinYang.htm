@@ -50,11 +50,14 @@
 				// Déplacer le contexte au centre du canevas
 				objC2D.translate(fltMilieu, fltMilieu);
 			//	objC2D.save();
-				if(scale < -0.9 && varScale == -0.05){
+				if(scale < -0.9 && varScale == -0.01){
 				//	scale = 1;
-					varScale = 0.05;
-					alert(scale);
+					varScale = 0.01;
+				//	alert(scale);
 				}
+				else if(scale > 0.9 && varScale == 0.01){
+					varScale = -0.01;
+					}
 				objC2D.scale(scale,1);	
 				objC2D.rotate(fltAngleRotation);
 				// Dessiner le symbole Yin Yang
@@ -101,7 +104,7 @@
 			const objC2D = objCanvas.getContext('2d')
 			let objCycleAnimation = null;
 			let fltAngleRotation = 0;
-			let varScale = -0.05;
+			let varScale = -0.01;
 			var scale = 1;
 			dessiner(); // Dessiner une première fois		
 			animer();  // Démarrer l'animation
