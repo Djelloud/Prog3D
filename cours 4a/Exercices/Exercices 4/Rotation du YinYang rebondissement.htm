@@ -19,7 +19,9 @@
 				effacerDessin();
 				mettreAJourAnimation();
 
-				dessiner();
+				dessiner(objCanvas.width / 2,objCanvas.width / 2);
+
+				dessiner(objCanvas.width +320,objCanvas.width/2);
 			}
 
 			function effacerDessin() {
@@ -28,7 +30,7 @@
 
 			function mettreAJourAnimation() {
 				// A programmer
-				fltAngleRotation += Math.PI / 180;
+				fltAngleRotation += varRotation;
 				varDeplacement += variationDeplacement;
 				scale += varScale;
 			//alert(varDeplacement);
@@ -40,23 +42,28 @@
 				objCycleAnimation = null;
 			}
 
-			function dessiner() {
+			function dessiner(X,Y) {
 				
 				objC2D.save();
 				const fltMilieu = objCanvas.width / 2;
-				var   varTranslateWidth = fltMilieu+ varDeplacement;
+				
+				var   varTranslateWidth = X+ varDeplacement;
 				const fltQuart = objCanvas.width / 4
 				const fltVingtieme = objCanvas.width / 20
 
-				if(varTranslateWidth >= 360 && variationDeplacement == 1){
+				if(varTranslateWidth >= 960 && variationDeplacement == 1){
 					
 					variationDeplacement = variationDeplacement * -1;
+					varRotation = varRotation * -1;
 				}
 				else if(varTranslateWidth < -320 && variationDeplacement == -1){
 					variationDeplacement = 1;
+
+					varRotation = varRotation *-1;
 				}
+			//	alert(varTranslateWidth);
 				// Déplacer le contexte au centre du canevas
-				objC2D.translate(varTranslateWidth, fltMilieu);
+				objC2D.translate(varTranslateWidth, Y);
 				objC2D.rotate(fltAngleRotation);
 				// Dessiner le symbole Yin Yang
 				objC2D.fillStyle = 'yellow';
@@ -96,47 +103,6 @@
 				objC2D.fill();
 
 				objC2D.restore();
-
-
-			/*	objC2D.translate(varTranslateWidth, fltMilieu);
-				// Dessiner le deuxieme symbole Yin Yang
-				objC2D.fillStyle = 'yellow';
-				objC2D.beginPath();
-				objC2D.arc(0, 0, fltMilieu, Math.PI / 2, 3 * Math.PI / 2, false);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.fillStyle = 'black';
-				objC2D.beginPath();
-				objC2D.arc(0, 0, fltMilieu, Math.PI / 2, 3 * Math.PI / 2, true);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.fillStyle = 'yellow';
-				objC2D.beginPath();
-				objC2D.arc(0, -fltQuart, fltQuart, 0, 2 * Math.PI, false);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.fillStyle = 'black';
-				objC2D.beginPath();
-				objC2D.arc(0, fltQuart, fltQuart, 0, 2 * Math.PI, false);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.fillStyle = 'black';
-				objC2D.beginPath();
-				objC2D.arc(0, -fltQuart, fltVingtieme, 0, 2 * Math.PI, false);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.fillStyle = 'yellow';
-				objC2D.beginPath();
-				objC2D.arc(0, fltQuart, fltVingtieme, 0, 2 * Math.PI, false);
-				objC2D.closePath();
-				objC2D.fill();
-
-				objC2D.restore();*/
 			}
 
 			const objCanvas = document.getElementById('monCanvas')
@@ -146,11 +112,12 @@
 			let varScale = -0.01;
 			let varDeplacement = 0;
 			let	variationDeplacement = 1;
+			let varRotation = Math.PI / 180;
 			var scale = 1;
-			dessiner(); // Dessiner une première fois		
+			dessiner(objCanvas.width / 2,objCanvas.width / 2); // Dessiner une première fois		
 			animer();  // Démarrer l'animation
 
-			dessiner(); // Dessiner une première fois		
+			dessiner(objCanvas.width +320,objCanvas.width/2); // Dessiner une première fois		
 			animer();  // Démarrer l'animation
 		//	setTimeout(animer,Math.floor(1000/60));
 		}
