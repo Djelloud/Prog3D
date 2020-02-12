@@ -1,0 +1,201 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Yin Yang 2020">
+	<title>changement de vitesse Yin Yang par Mohamed-Amine Djelloud</title>
+	<link rel="stylesheet" type="text/css" href="StyleLabo4.css" />
+
+	<!-- Code JavaScript local -->
+	<script type="text/javascript">
+	let varDeplacement = 0;
+			let	variationDeplacement = 0;
+			let varRotation = Math.PI / 180;
+		const initAnimation = () => {
+			function animer() {
+				// Requête pour le prochain cycle
+				objCycleAnimation = requestAnimationFrame(animer);
+
+				// Le cycle d'animation
+				effacerDessin();
+				mettreAJourAnimation();
+
+				dessiner(0,objCanvas.width / 2);
+
+				dessiner(objCanvas.width,objCanvas.width/2);
+			}
+
+/**/
+
+
+		/**/
+
+
+
+			function effacerDessin() {
+				objC2D.clearRect(0, 0, objCanvas.width, objCanvas.height);
+			}
+
+			function mettreAJourAnimation() {
+				// A programmer
+				
+				fltAngleRotation += varRotation* variationDeplacement;
+				varDeplacement += variationDeplacement;
+				scale += varScale;
+
+				
+				if(varDeplacement > objCanvas.width /2){
+					varDeplacement =  -objCanvas.width/2;
+					
+
+				}else if(varDeplacement < -1*(objCanvas.width/2))
+					{	
+						varDeplacement =  objCanvas.width/2;
+				}
+			}
+
+			function arreterAnimation() {
+				if (objCycleAnimation != null)
+					cancelAnimationFrame(objCycleAnimation);
+				objCycleAnimation = null;
+			}
+
+			function dessiner(X,Y) {
+				
+				objC2D.save();
+				const fltMilieu = objCanvas.width / 2;
+				
+				var   varTranslateWidth = X+ varDeplacement;
+				const fltQuart = objCanvas.width / 4
+				const fltVingtieme = objCanvas.width / 20
+
+				// Déplacer le contexte au centre du canevas
+				objC2D.translate(varTranslateWidth, Y);
+				objC2D.rotate(fltAngleRotation);
+				// Dessiner le symbole Yin Yang
+				objC2D.fillStyle = 'yellow';
+				objC2D.beginPath();
+				objC2D.arc(0, 0, fltMilieu, Math.PI / 2, 3 * Math.PI / 2, false);
+				objC2D.closePath();
+				objC2D.fill();
+
+				objC2D.fillStyle = 'black';
+				objC2D.beginPath();
+				objC2D.arc(0, 0, fltMilieu, Math.PI / 2, 3 * Math.PI / 2, true);
+				objC2D.closePath();
+				objC2D.fill();
+
+				objC2D.fillStyle = 'yellow';
+				objC2D.beginPath();
+				objC2D.arc(0, -fltQuart, fltQuart, 0, 2 * Math.PI, false);
+				objC2D.closePath();
+				objC2D.fill();
+
+				objC2D.fillStyle = 'black';
+				objC2D.beginPath();
+				objC2D.arc(0, fltQuart, fltQuart, 0, 2 * Math.PI, false);
+				objC2D.closePath();
+				objC2D.fill();
+
+				objC2D.fillStyle = 'black';
+				objC2D.beginPath();
+				objC2D.arc(0, -fltQuart, fltVingtieme, 0, 2 * Math.PI, false);
+				objC2D.closePath();
+				objC2D.fill();
+
+				objC2D.fillStyle = 'yellow';
+				objC2D.beginPath();
+				objC2D.arc(0, fltQuart, fltVingtieme, 0, 2 * Math.PI, false);
+				objC2D.closePath();
+				objC2D.fill();
+				objC2D.restore();
+			}
+
+			const objCanvas = document.getElementById('monCanvas')
+			const objC2D = objCanvas.getContext('2d')
+			let objCycleAnimation = null;
+			let fltAngleRotation = 0;
+			let varScale = -0.01;
+			
+			
+			var scale = 1;
+			dessiner(objCanvas.width / 4,objCanvas.width / 2); // Dessiner une première fois		
+			animer();  // Démarrer l'animation
+
+			dessiner(objCanvas.width ,objCanvas.width/2); // Dessiner une première fois		
+			animer();  // Démarrer l'animation
+		//	setTimeout(animer,Math.floor(1000/60));
+		
+		
+		
+		}
+
+		function gereClavier(){
+			
+			switch(event.charCode){
+				case 43 :
+				plus();
+				break;
+				case 45:
+				moin();
+				break;
+			}
+		}
+
+		function plus(){
+			
+			
+			if(variationDeplacement < 10){
+				
+				variationDeplacement += 5;
+				}
+		
+		}
+
+		function moin(){
+		//alert(varDeplacement);
+			if(variationDeplacement > -10){
+				variationDeplacement += -0.05;
+			}
+			
+		}
+	
+	</script>
+</head>
+
+<body onload="initAnimation()">
+
+	<header class="sTexteCentre sLargeurDiv sEntete">
+		<p>
+			<span class="sTitreApp">
+				Rotation du Yin Yang<br />
+			</span> par
+			<span class="sAuteurApp">
+				Mohamed-Amine Djelloud
+			</span>
+		</p>
+	</header>
+
+	<main class="sLargeurDiv sCorps">
+		<canvas id="monCanvas" width="640" height="640" tabindex="1" onkeypress="gereClavier();">
+			Votre navigateur ne supporte pas la balise canvas
+		</canvas>
+	</main>
+
+	<footer class="sLargeurDiv sPiedDePage">
+		<p>
+			<a href="http://www.cgodin.qc.ca">
+				<img src="logoCGG.jpg" alt="logoCGG" />
+			</a>
+			<a href="http://www.cgodin.qc.ca/programme/techniques-informatique/">
+				Département d'informatique du Cégep Gérald-Godin
+			</a>
+			<br />
+			&copy; 2020
+		</p>
+	</footer>
+</body>
+
+</html>
