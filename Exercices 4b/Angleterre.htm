@@ -11,8 +11,98 @@
   <script type="text/javascript">
    var objCanvas = null;
     var objC2D = null;  
+    var objImage =  new Image();
+    let intXSouris = null;
+	let intYSouris = null;
+    let intXTexte = null;
+	let intYTexte = null;
+    let binCercleGlisse = false;
+
+    function initDessiner(){
+         objCanvas = document.getElementById('monCanvas');
+         objC2D = objCanvas.getContext('2d');  
+         intXTexte = objCanvas.width / 2;
+        intYTexte = objCanvas.height / 2;
+        binCercleGlisse = false; // Le cercle ne glisse pas
+		dessiner(); // Dessiner une première fois
+    }
+
+
+    function effacerDessin() {
+                        objC2D.clearRect(0, 0, objCanvas.width, objCanvas.height);
+                    }
+
+function prendreTexte() {
+
+                            var objElemRect = event.target.getBoundingClientRect();
+                            intXSouris = event.clientX - objElemRect.left;
+                            intYSouris = event.clientY - objElemRect.top;
+                            
+                    if (objC2D.isPointInPath(intXSouris, intYSouris)) {
+                       
+                        event.preventDefault();
+                        
+                    }
+                    else {
+                       
+                        effacerDessin(); binCercleGlisse = true; dessiner();
+                        objImage.src = objCanvas.toDataURL();
+                        event.dataTransfer.setDragImage(objImage, intXTexte, intYTexte);
+                    }
+			}
+
+            function glisserTexte() {
+                event.preventDefault(); // Permettre le dépôt
+
+// Calculer la distance (x,y) entre l'ancienne 
+// postion de la souris et la nouvelle
+const objElemRect = event.target.getBoundingClientRect();
+const intXSouris2 = event.clientX - objElemRect.left;
+const intYSouris2 = event.clientY - objElemRect.top;
+// La distance entre l'ancienne position de la souris
+// et sa position actuelle
+const intDistanceX = intXSouris2 - intXSouris;
+const intDistanceY = intYSouris2 - intYSouris;
+
+    	// La nouvelle position du cercle
+        intXTexte += intDistanceX; 
+        intYTexte += intDistanceY; 
+            // Redesssiner (avec ombrage)
+        effacerDessin();  dessiner();
+        intXSouris = intXSouris2;  intYSouris = intYSouris2;
+    
+			}
+
+            function deposerTexte() {
+                var objElemRect = event.target.getBoundingClientRect();
+                intXTexte = event.clientX - objElemRect.left;
+                intYTexte = event.clientY - objElemRect.top;
+                effacerDessin();  dessiner();
+			}
+
+            function PermettreLeDepot(){
+                event.preventDefault();
+            }
+
+
       const dessiner = ()=> {
           objC2D.save();
+          var strTexte = "UNION JACK";
+        objC2D.font ="120pt fantasay";
+        objC2D.baseline = "bottom";
+        objC2D.textAlign = "center"; 
+         intXSouris = objCanvas.width/2;
+	     intYSouris = objCanvas.height/2;    
+        var Texte = strTexte.split(' ');
+        for(var i =0;i < Texte.length;i++){
+            objC2D.fillText(Texte[i], intXTexte ,intYTexte +(i * 150));
+
+        }
+
+
+      
+
+        objC2D.globalCompositeOperation = 'source-atop';
     /*FOND BLEU*/
         objC2D.beginPath();
        
@@ -146,32 +236,14 @@
         objC2D.lineWidth = 1;
         objC2D.stroke();
         objC2D.closePath();
-
+        
         objC2D.restore();
+
 	}
 
-    function initDessiner(){
-         objCanvas = document.getElementById('monCanvas');
-         objC2D = objCanvas.getContext('2d');  
-         dessiner();
-    }
+   
 
-    function effacerDessin() {
-				objC2D.clearRect(0, 0, objCanvas.width, objCanvas.height);
-			}
-
-
-            function prendreTexte() {
-				
-			}
-
-            function glisserTexte() {
-				
-			}
-
-            function deposerTexte() {
-				
-			}
+         
    </script>
 </head>
 
@@ -188,7 +260,7 @@
     </header>
 
     <main class="sLargeurDiv sCorps">	
-	   <canvas id="monCanvas" width="640" height="320" ondragstart="prendreTexte()" ondrop="deposerTexte()" ondragover="glisserTexte()">
+	   <canvas id="monCanvas" width="640" height="320" tabindex="1" draggable="true" ondragstart="prendreTexte();" ondrop="deposerTexte()" ondragover="glisserTexte()" ondragleave="deposerTexte()" ondragenter="deposerTexte()" >
 		    Votre navigateur ne supporte pas la balise canvas
 	    </canvas>
     </main>
