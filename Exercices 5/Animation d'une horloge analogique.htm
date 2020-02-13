@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Animation horloge 2020" />
+    <title>Animation d'une horloge analogique par Mohamed-Amine Djelloud</title>
+    <link rel="stylesheet" type="text/css" href="StyleLabo5.css" />
+
+    <!-- Code JavaScript local -->
+    <script type="text/javascript">
+        let objCanvas = null;
+        let objC2D = null;
+        let objCycleAnimation = null;
+        let rotationAiguilleSeconde = null;
+        let rotationAiguilleMinute = null;
+        let rotationAiguilleHeure = null;
+        let rotation = Math.PI / 180;
+        var date = null;
+        var objImage = new Image();
+
+
+        let heure = null;
+            let minute = null;
+            let seconde = null;
+
+
+            let jour = null;
+            let mois = null;
+            let annee = null;
+        objImage.src = 'paysage.jpg';
+
+        const initAnimation = () => {
+            objCanvas = document.getElementById('monCanvas');
+            objC2D = objCanvas.getContext('2d');
+            dessinerHorloge(); // Dessiner une première fois
+            animer();
+        }
+
+        const animer = () => {
+            // Requête pour le prochain cycle
+            objCycleAnimation = requestAnimationFrame(animer);
+
+            // Le cycle d'animation
+            effacerDessin();
+            mettreAJourAnimation();
+            dessinerHorloge();
+        }
+
+        const effacerDessin = () => {
+            objC2D.clearRect(0, 0, objCanvas.width, objCanvas.height);
+        }
+
+        const mettreAJourAnimation = () => {
+            // A programmer
+            const objDate = new Date();
+            seconde = objDate.getSeconds();
+            minute = objDate.getMinutes();
+             heure = objDate.getHours();
+            
+            jour = objDate.getDate();
+            mois = objDate.getMonth() +1;
+            annee = objDate.getFullYear();
+
+
+             rotationAiguilleSeconde = (seconde / 60) *360;
+                rotationAiguilleMinute = (minute / 60 + seconde / 3600) * 360;
+             rotationAiguilleHeure = (heure / 12 + (minute / 60) / 12 + (seconde / 3600) / 12) * 360 ;
+           //  alert(objDate.getSeconds());
+             
+
+
+        }
+
+        const arreterAnimation = () => {
+            if (objCycleAnimation != null)
+                cancelAnimationFrame(objCycleAnimation);
+            objCycleAnimation = null
+        }
+
+        const dessinerHorloge = () => {
+            objC2D.save();
+            // Copier votre dessin ici
+            objC2D.translate(objCanvas.width / 2, objCanvas.height / 2);
+            objC2D.beginPath();
+            objC2D.arc(0, 0, 250, 0, 2 * Math.PI);
+            objC2D.clip();
+            objC2D.stroke();
+            objC2D.drawImage(objImage, -300, -300, objCanvas.width, objCanvas.height);
+            objC2D.closePath();
+            var strTexte = '';
+            objC2D.font = '20px Arial';
+            objC2D.textAlign = "center";
+            objC2D.fillStyle = "white";
+            objC2D.save();
+
+
+            for (var i = 1; i < 13; i++) {
+
+                switch (i) {
+                    case 1:
+                        strTexte = "XII";
+                        break;
+                    case 2:
+                        strTexte = "I";
+                        break;
+                    case 3:
+                        strTexte = "II";
+                        break;
+                    case 4:
+                        strTexte = "III";
+                        break;
+                    case 5:
+                        strTexte = "IV";
+                        break;
+                    case 6:
+                        strTexte = "V";
+                        break;
+                    case 7:
+                        strTexte = "VI";
+                        break;
+                    case 8:
+                        strTexte = "VII";
+                        break;
+                    case 9:
+                        strTexte = "VIII";
+                        break;
+                    case 10:
+                        strTexte = "IX";
+                        break;
+                    case 11:
+                        strTexte = "X";
+                        break;
+                    case 12:
+                        strTexte = "XI";
+                        break;
+                }
+
+                objC2D.fillText(strTexte, 0, -220);
+                objC2D.rotate(Math.PI / 6);
+
+            }
+
+
+            for (var i = 1; i <= 60; i++) {
+                objC2D.beginPath();
+                objC2D.moveTo(0, -190);
+                objC2D.lineTo(0, -175);
+                objC2D.strokeStyle = "white";
+                objC2D.lineWidth = 2;
+                objC2D.stroke();
+                objC2D.closePath();
+                objC2D.rotate(Math.PI / 30);
+            }
+
+            objC2D.restore();
+            objC2D.save();
+            for (var i = 1; i < 13; i++) {
+                objC2D.beginPath();
+                objC2D.moveTo(0, -190);
+                objC2D.lineTo(0, -175);
+                objC2D.strokeStyle = "white";
+                objC2D.lineWidth = 5;
+                objC2D.stroke();
+                objC2D.closePath();
+                objC2D.rotate(Math.PI / 6);
+            }
+
+            objC2D.restore();
+            objC2D.save();
+            // aiguille seconde
+            objC2D.rotate( rotationAiguilleSeconde * rotation);
+            objC2D.beginPath();
+            objC2D.moveTo(-5, 10);
+            objC2D.lineTo(5, 10);
+            objC2D.lineTo(0, -170);
+            objC2D.fillStyle = "4107C5";
+            objC2D.lineWidth = 1;
+            objC2D.fill();
+        //    alert(rotation)
+          
+            objC2D.closePath();
+
+            objC2D.restore();
+            objC2D.save();
+
+            // aiguille heure
+            objC2D.rotate(rotationAiguilleHeure * rotation);
+            objC2D.beginPath();
+            objC2D.moveTo(-5, 10);
+            objC2D.lineTo(5, 10);
+            objC2D.lineTo(0, -100);
+            objC2D.fillStyle = "A507C5";
+            objC2D.lineWidth = 1;
+
+            objC2D.fill();
+            objC2D.closePath();
+            // aiguille minute
+            objC2D.restore();
+            objC2D.save();
+
+            objC2D.rotate(rotationAiguilleMinute * rotation);
+            objC2D.beginPath();
+            objC2D.moveTo(-5, 10);
+            objC2D.lineTo(5, 10);
+            objC2D.lineTo(0, -170);
+            objC2D.fillStyle = "BD11BF";
+            objC2D.lineWidth = 1;
+            objC2D.fill();
+            objC2D.closePath();
+
+            objC2D.restore();
+            objC2D.save()
+            //mini cercle
+            objC2D.beginPath();
+            objC2D.arc(0, 0, 15, 0, 2 * Math.PI);
+            objC2D.fillStyle = "black";
+            objC2D.fill();
+            objC2D.closePath();
+
+            //Rectangle
+       objC2D.restore();
+
+            date = jour + "/" + mois + "/" + annee;
+
+            objC2D.fillText(date, 0, 60);
+            objC2D.beginPath();
+            objC2D.rect(-50, 40, objC2D.measureText(date).width, 25);
+            objC2D.lineWidth = 1;
+            objC2D.stroke();
+
+            var Now = heure + ":" + minute + ":" + seconde;
+
+            objC2D.fillText(Now, 0, 90);
+
+            objC2D.beginPath();
+            objC2D.rect(-50, 70, objC2D.measureText(date).width, 25);
+            objC2D.lineWidth = 1;
+            objC2D.stroke();
+
+
+            objC2D.restore();
+        }
+    </script>
+</head>
+
+<body onload="initAnimation()">
+
+    <header class="sTexteCentre sLargeurDiv sEntete">
+        <p>
+            <span class="sTitreApp">
+                Animation d'une horloge analogique<br />
+            </span> par
+            <span class="sAuteurApp">
+                Mohamed-Amine Djelloud
+            </span>
+        </p>
+    </header>
+
+    <main class="sLargeurDiv sCorps">
+        <canvas id="monCanvas" width="640" height="640">
+            Votre navigateur ne supporte pas la balise canvas
+        </canvas>
+    </main>
+
+    <footer class="sLargeurDiv sPiedDePage">
+        <p>
+            <a href="http://www.cgodin.qc.ca">
+                <img src="logoCGG.jpg" alt="logoCGG" />
+            </a>
+            <a href="http://www.cgodin.qc.ca/programme/techniques-informatique/">
+                Département d'informatique du Cégep Gérald-Godin
+            </a>
+            <br />
+            &copy; 2020
+        </p>
+    </footer>
+</body>
+
+</html>
