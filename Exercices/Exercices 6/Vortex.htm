@@ -29,7 +29,7 @@
         initMurs();
         initBaton();
         initBalle();
-        initTrajetBalle()
+        initTrajetBalle();
         initVortex();
         initSons();
         initPointage();
@@ -101,12 +101,13 @@
         objBalle.intVitesse = 5;
         objBalle.intDirectionDegre = Math.floor(Math.random() * 181);
         objBalle.binEnMouvement = false;
+        objBalle.traitVisible = false;
     }
 
     function initTrajetBalle() {
          objTrajetBalle = new Object();
 
-        objTrajetBalle.couleur = 'yellow';
+           objTrajetBalle.couleur = 'yellow';
        
             objTrajetBalle.tabTrajectoireX = [];
             objTrajetBalle.tabTrajectoireY = [];
@@ -502,7 +503,7 @@
 
     function dessinerBalle() {
         objC2D.save();
-        //console.log( "X =" + objBalle.fltX +" Y =" + objBalle.fltY)
+
         const objDegrade = objC2D.createRadialGradient(objBalle.fltX, objBalle.fltY, 0, objBalle.fltX, objBalle.fltY, objBalle.intRayon);
         objDegrade.addColorStop(0, 'white');
         objDegrade.addColorStop(1, objBalle.strCouleur);
@@ -512,10 +513,10 @@
         objC2D.arc(objBalle.fltX, objBalle.fltY, objBalle.intRayon, 0, 2 * Math.PI, false);
         objC2D.fill(); objC2D.stroke();
         
-
+    if(objBalle.traitVisible){
         objC2D.translate(objBalle.fltX,objBalle.fltY);
         objC2D.rotate(-objBalle.intDirectionDegre  * (Math.PI/180));
-     //   console.log(objBalle.intDirectionDegre);
+    
         objC2D.beginPath();
         objC2D.moveTo(0,0);
         objC2D.lineTo(objBalle.intRayon , 0);
@@ -523,6 +524,8 @@
         objC2D.fill();
         objC2D.stroke();
         objC2D.closePath();
+    }
+
 
         objC2D.restore();
     }
@@ -535,7 +538,7 @@
                 objTrajetBalle.tabTrajectoireY = [];
             }
 
-            for(var i = 0; i < objTrajetBalle.tabTrajectoireX.length;i++){
+            for(var i = 0; i < objTrajetBalle.tabTrajectoireX.length-1;i++){
                 objC2D.beginPath();
                 objC2D.arc(objTrajetBalle.tabTrajectoireX[i], objTrajetBalle.tabTrajectoireY[i], 1, 0, 2 * Math.PI, false);
                 objC2D.fillStyle = 'white'; 
@@ -648,13 +651,25 @@
             if (!objBalle.binEnMouvement)
                 objBalle.fltX += objBaton.intVitesse * objBaton.intDirection;
         }
+
+        switch (event.button) {
+            case 0:
+            if(objBalle.traitVisible){
+                objBalle.traitVisible =false;
+            }else{
+                objBalle.traitVisible =true;
+            }
+               
+                
+                break;
+        }
     }
 
    </script>
 </head>
 
 <body onload="initAnimation()"> 
-	<canvas id="monCanvas" width="960" height="640" tabIndex="1" onkeydown="deplacerBaton(); return false">
+	<canvas id="monCanvas" width="960" height="640" tabIndex="1" onkeydown="deplacerBaton(); return false" onclick="deplacerBaton();">
 		Votre navigateur ne supporte pas la balise canvas
 	</canvas>
 </body>
