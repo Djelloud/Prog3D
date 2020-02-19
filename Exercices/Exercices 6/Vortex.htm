@@ -20,6 +20,7 @@
 	let objSons = null;
 	let objPointage = null;
     let objImage = null;
+    let objTrajetBalle = null;
     function initAnimation() {
         objCanvas = document.getElementById('monCanvas');
 		objCanvas.focus();
@@ -28,6 +29,7 @@
         initMurs();
         initBaton();
         initBalle();
+        initTrajetBalle()
         initVortex();
         initSons();
         initPointage();
@@ -99,6 +101,16 @@
         objBalle.intVitesse = 5;
         objBalle.intDirectionDegre = Math.floor(Math.random() * 181);
         objBalle.binEnMouvement = false;
+    }
+
+    function initTrajetBalle() {
+         objTrajetBalle = new Object();
+
+        objTrajetBalle.couleur = 'yellow';
+       
+            objTrajetBalle.tabTrajectoireX = [];
+            objTrajetBalle.tabTrajectoireY = [];
+
     }
 
     // Construire le vortex
@@ -190,6 +202,7 @@
 	function mettreAjourAnimation() {
 	    if (!objVortex.binEnDisparition) {
 	        mettreAjourAnimationBalle();
+            mettreAJourTrajetBalle();
 	        mettreAJourAnimationVortex();
 	    }
         else
@@ -225,6 +238,9 @@
                 initVortex();
         }
     }
+
+
+
 
     // Pour mettre à jour l'animation de la balle
     function mettreAjourAnimationBalle() {
@@ -283,6 +299,18 @@
         }
     }
 
+
+    function   mettreAJourTrajetBalle(){
+
+        if(objBalle.binEnMouvement){
+            objTrajetBalle.tabTrajectoireX.push(objBalle.fltX);
+            objTrajetBalle.tabTrajectoireY.push(objBalle.fltY);
+          //  alert(objTrajetBalle.tabTrajectoireX[0]);
+        }
+
+    }
+
+
 	// Pour vérifier si la balle est en collision avec la bâton
 	function balleEstEnCollisionAvecBaton(fltXBalle, fltYBalle) {
 	    // Rectangle de la balle
@@ -326,6 +354,7 @@
 	    dessinerBaton();
 	    dessinerVortexEnSpiraleAvecPlusieursBranches();
 	    dessinerBalle();
+        dessinerTrajetBalle();
 	    dessinerPointage();
 	}
 
@@ -497,6 +526,27 @@
 
         objC2D.restore();
     }
+
+   function dessinerTrajetBalle(){
+     objC2D.save();
+    //console.log(objTrajetBalle.length;
+            if(!objBalle.binEnMouvement){
+                objTrajetBalle.tabTrajectoireX = [];
+                objTrajetBalle.tabTrajectoireY = [];
+            }
+
+            for(var i = 0; i < objTrajetBalle.tabTrajectoireX.length;i++){
+                objC2D.beginPath();
+                objC2D.arc(objTrajetBalle.tabTrajectoireX[i], objTrajetBalle.tabTrajectoireY[i], 1, 0, 2 * Math.PI, false);
+                objC2D.fillStyle = 'white'; 
+                objC2D.fill(); 
+                objC2D.stroke();
+                objC2D.closePath();
+            }
+            
+        
+        objC2D.restore();
+   }
 
     // Pour dessiner le pointage
     function dessinerPointage() {
